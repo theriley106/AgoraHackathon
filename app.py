@@ -6,7 +6,10 @@ app = Flask(__name__, static_url_path='/static')
 
 @app.route('/', methods=['GET'])
 def index():
-	AGORA_KEY = os.environ.get('API_KEY', None)
+	try:
+		from keys import *
+	except:
+		AGORA_KEY = os.environ.get('API_KEY', None)
 	return render_template("index.html", API_KEY=AGORA_KEY)
 
 if __name__ == '__main__':

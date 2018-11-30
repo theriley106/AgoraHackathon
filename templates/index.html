@@ -82,6 +82,7 @@ function join() {
 
   console.log("Init AgoraRTC client with App ID: " + appId.value);
   client = AgoraRTC.createClient({mode: 'interop'});
+  window.client = client;
   client.init(appId.value, function () {
     console.log("AgoraRTC client initialized");
     client.join(channel_key, channel.value, null, function(uid) {
@@ -177,13 +178,13 @@ function join() {
   });
 }
 
+function getBatteryLevel(){
+  client.getSystemStats((x)=>console.log(x['BatteryLevel']));
+}
+
+
 function leave() {
-  document.getElementById("leave").disabled = true;
-  client.leave(function () {
-    console.log("Leavel channel successfully");
-  }, function (err) {
-    console.log("Leave channel failed");
-  });
+  getBatteryLevel();
 }
 
 function publish() {
@@ -219,6 +220,16 @@ function getDevices() {
       }
     }
   });
+}
+
+function getStats(){
+
+    window.client.getSystemStats((x)=>console.log("getSystemStats",x));
+    client.getRemoteAudioStats((x)=>console.log("getRemoteAudioStats",x));
+    client.getLocalAudioStats((x)=>console.log("getLocalAudioStats",x));
+    client.getRemoteVideoStats((x)=>console.log("getRemoteVideoStats",x));
+    client.getLocalVideoStats((x)=>console.log("getLocalVideoStats",x));
+    client.getTransportStats((x)=>console.log("getTransportStats",x));
 }
 
 //audioSelect.onchange = getDevices;
