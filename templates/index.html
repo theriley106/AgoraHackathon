@@ -179,7 +179,7 @@ function join() {
 }
 
 function getBatteryLevel(){
-  client.getSystemStats((x)=>console.log(x['BatteryLevel']));
+  client.getLocalAudioStats((x)=>console.log("Ayyo", x));
 }
 
 
