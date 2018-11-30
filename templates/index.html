@@ -17,21 +17,6 @@
 </div>
 </div>
 
-<div id="div_join" class="panel panel-default">
-<div class="panel-body">
-
-80640639a62c4802b2be632f6855c464
-
-App ID: <input id="appId" type="text" value="" size="36"></input>
-Channel: <input id="channel" type="text" value="1000" size="4"></input>
-Host: <input id="video" type="checkbox" checked></input>
-<button id="join" class="btn btn-primary" onclick="join()">Join</button>
-<button id="leave" class="btn btn-primary" onclick="leave()">Leave</button>
-<button id="publish" class="btn btn-primary" onclick="publish()">Publish</button>
-<button id="unpublish" class="btn btn-primary" onclick="unpublish()">Unpublish</button>
-</div>
-</div>
-
     <!--style>
     .video__box{width:910px; margin:0 auto; overflow:hidden;}
     .video__main{ width:810px; height:607px;float:left }
@@ -76,24 +61,22 @@ var audioSelect = document.querySelector('select#audioSource');
 var videoSelect = document.querySelector('select#videoSource');
 
 function join() {
-  document.getElementById("join").disabled = true;
-  document.getElementById("video").disabled = true;
   var channel_key = null;
 
-  console.log("Init AgoraRTC client with App ID: " + appId.value);
+  console.log("Init AgoraRTC client with App ID: " + "{{ API_KEY }}");
   client = AgoraRTC.createClient({mode: 'interop'});
   window.client = client;
-  client.init(appId.value, function () {
+  client.init("{{ API_KEY }}", function () {
     console.log("AgoraRTC client initialized");
-    client.join(channel_key, channel.value, null, function(uid) {
+    client.join(channel_key, "1000", null, function(uid) {
       console.log("User " + uid + " join channel successfully");
 
-      if (document.getElementById("video").checked) {
+      if (true) {
         camera = videoSource.value;
         microphone = audioSource.value;
-        localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false});
+        localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: true, screen: false});
         //localStream = AgoraRTC.createStream({streamID: uid, audio: false, cameraId: camera, microphoneId: microphone, video: false, screen: true, extensionId: 'minllpmhdgpndnkomcoccfekfegnlikg'});
-        if (document.getElementById("video").checked) {
+        if (true) {
           localStream.setVideoProfile('720p_3');
 
         }
@@ -235,8 +218,7 @@ function getStats(){
 //audioSelect.onchange = getDevices;
 //videoSelect.onchange = getDevices;
 getDevices();
-
-document.getElementById("appId").value = "{{ API_KEY }}";join();
+join();
 </script>
 </body>
 </html>
