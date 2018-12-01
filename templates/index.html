@@ -28,21 +28,21 @@
       padding: 15px;
     }
 .fill img {
+
 width: 350px;
 height: 500px;
+
 }
   </style>
   </head>
 
 <body>
 <div id="div_device" class="panel panel-default">
-<div class="select">
+
 <label for="audioSource">Audio source: </label><select id="audioSource"></select>
-</div>
-<div class="select">
+
 <label for="videoSource">Video source: </label><select id="videoSource"></select>
-</div>
-</div>
+
 
     <!--style>
     .video__box{width:910px; margin:0 auto; overflow:hidden;}
@@ -64,17 +64,20 @@ height: 500px;
       <h4>Card Game</h4>
       <div>
       <ul class="nav nav-pills nav-stacked">
-        <li align="center" class="active"><a>Chris</a></li>
+        <li align="center" class="active"><a>Player 1</a></li>
         <div>
         <div id="video" style="">
     <div id="agora_local" style="width:100%;height:200px;display:inline-block;"></div>
 </div>
+
         </div>
-        <li align="center"><a>Max</a></li>
-        <div align="center">
-        <img src="https://www.w3schools.com/images/colorpicker.gif">
+        <li align="center"><a>Player 2</a></li>
+        <div>
+
+        <div id="video1" style="">
         </div>
-        <li align="center"><a>Randolph</a></li>
+        </div>
+        <li align="center"><a>Player 3</a></li>
         <div align="center">
         <img src="https://www.w3schools.com/images/colorpicker.gif">
         </div>
@@ -93,7 +96,7 @@ height: 500px;
     </div>
 
     <div class="col-sm-9 fill">
-      <div align="center">
+      <div align="center" style="padding-top:150px;vertical-align:middle; text-align:center;">
         <img src="static/cards/10C.png">
       </div>
      </div>
@@ -208,8 +211,8 @@ function join() {
   client.on('stream-subscribed', function (evt) {
     var stream = evt.stream;
     console.log("Subscribe remote stream successfully: " + stream.getId());
-    if ($('div#video #agora_remote'+stream.getId()).length === 0) {
-      $('div#video').append('<div id="agora_remote'+stream.getId()+'" style="float:left; width:810px;height:607px;display:inline-block;"></div>');
+    if ($('div#video1 #agora_remote'+stream.getId()).length === 0) {
+      $('div#video1').append('<div id="agora_remote'+stream.getId()+'" style="width:100%;height:200px;display:inline-block;"></div>');
     }
     stream.play('agora_remote' + stream.getId());
   });
