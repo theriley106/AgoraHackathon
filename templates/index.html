@@ -289,7 +289,7 @@ function getStats(){
 }
 
 function newCard(){
-  document.getElementById("cardVal").src="/newCard?cache=" + Math.floor(Math.random()*10000);
+  document.getElementById("cardVal").src="/newCard?cache=" + Math.floor(Math.random()*1000000);
 }
 
 function httpGet(theUrl)
@@ -308,12 +308,12 @@ function resetCards(){
 }
 
 function getImage(){
-  var url = "/recent?cache=" + Math.floor(Math.random()*10000);
+  var url = "/recent?cache=" + Math.floor(Math.random()*1000000);
     console.log(url);
     document.getElementById("cardVal").src=url;
 }
 
-setInterval(function() {getImage();}, 200);
+setInterval(function() {getImage();}, 700);
 
 //audioSelect.onchange = getDevices;
 //videoSelect.onchange = getDevices;
