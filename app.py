@@ -7,6 +7,7 @@ app = Flask(__name__, static_url_path='/static')
 CARDS = glob.glob("static/cards/*")
 ACTIVE_CARDS = CARDS
 DEALT_CARDS = []
+MOST_RECENT = []
 
 @app.route('/', methods=['GET'])
 def index():
@@ -16,12 +17,17 @@ def index():
 		AGORA_KEY = os.environ.get('API_KEY', None)
 	return render_template("index.html", API_KEY=AGORA_KEY)
 
+@app.route('/recent', methods=["GET"])
+def getMostRecent():
+	return send_file(MOST_RECENT[-1], mimetype='image/png')
+
 @app.route('/card', methods=["GET"])
 def getCard():
 	#print ACTIVE_CARDS
 	a = random.choice(ACTIVE_CARDS)
 	ACTIVE_CARDS.remove(a)
 	filename = a
+	MOST_RECENT.append(filename)
 	return send_file(filename, mimetype='image/png')
 
 @app.route('/reset', methods=["GET"])
