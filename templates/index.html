@@ -86,7 +86,7 @@ height: 500px;
       <br><br>
       <div style="bottom:0;position: absolute; width:90%;padding-bottom:10px;padding-left:10px;" align="center">
         <div align="center">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Deal Card</button>
+        <button type="button" onclick='newCard()' class="btn btn-primary btn-lg btn-block">Deal Card</button>
         </div>
         <br>
          <div align="center">
@@ -97,7 +97,7 @@ height: 500px;
 
     <div class="col-sm-9 fill">
       <div align="center" style="padding-top:150px;vertical-align:middle; text-align:center;">
-        <img src="static/cards/10C.png">
+        <img id='cardVal' src="/card">
       </div>
      </div>
   </div>
@@ -286,6 +286,10 @@ function getStats(){
     client.getRemoteVideoStats((x)=>console.log("getRemoteVideoStats",x));
     client.getLocalVideoStats((x)=>console.log("getLocalVideoStats",x));
     client.getTransportStats((x)=>console.log("getTransportStats",x));
+}
+
+function newCard(){
+  document.getElementById("cardVal").src="/card?cache=" + Math.floor(Math.random()*10000);
 }
 
 //audioSelect.onchange = getDevices;
