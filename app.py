@@ -22,11 +22,12 @@ def index():
 def getMostRecent():
 	while len(LAST_SENT) > 0:
 		LAST_SENT.pop()
+	if len(MOST_RECENT) == 0:
+		getCard()
 	file = MOST_RECENT[-1]
-	LAST_SENT.append(file)
 	return send_file(file, mimetype='image/png')
 
-@app.route('/card', methods=["GET"])
+@app.route('/newCard', methods=["GET"])
 def getCard():
 	#print ACTIVE_CARDS
 	a = random.choice(ACTIVE_CARDS)
@@ -56,4 +57,4 @@ def checkNew():
 		return exp
 
 if __name__ == '__main__':
-	app.run(host='127.0.0.1', port=5000)
+	app.run(host='0.0.0.0', port=5000)
