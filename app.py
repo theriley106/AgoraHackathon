@@ -8,6 +8,7 @@ CARDS = glob.glob("static/cards/*")
 ACTIVE_CARDS = CARDS
 DEALT_CARDS = []
 MOST_RECENT = []
+LAST_SENT = []
 
 @app.route('/', methods=['GET'])
 def index():
@@ -19,7 +20,11 @@ def index():
 
 @app.route('/recent', methods=["GET"])
 def getMostRecent():
-	return send_file(MOST_RECENT[-1], mimetype='image/png')
+	while len(LAST_SENT) > 0:
+		LAST_SENT.pop()
+	file = MOST_RECENT[-1]
+	LAST_SENT.append(file)
+	return send_file(file, mimetype='image/png')
 
 @app.route('/card', methods=["GET"])
 def getCard():
@@ -28,6 +33,7 @@ def getCard():
 	ACTIVE_CARDS.remove(a)
 	filename = a
 	MOST_RECENT.append(filename)
+	#LAST_SENT.append(filename)
 	return send_file(filename, mimetype='image/png')
 
 @app.route('/reset', methods=["GET"])
@@ -40,6 +46,14 @@ def resetCards():
 	for val in glob.glob("static/cards/*"):
 		ACTIVE_CARDS.append(val)
 	return jsonify({})
+
+@app.route('/isNew', methods=["GET"])
+def checkNew():
+	try:
+		return str(LAST_SENT[-1] != MOST_RECENT[-1]).lower()
+	except Exception as exp:
+		print exp
+		return exp
 
 if __name__ == '__main__':
 	app.run(host='127.0.0.1', port=5000)
