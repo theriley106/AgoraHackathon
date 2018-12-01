@@ -289,7 +289,8 @@ function getStats(){
 }
 
 function newCard(){
-  document.getElementById("cardVal").src="/newCard?cache=" + Math.floor(Math.random()*1000000);
+  httpGet("/newCard?cache=" + Math.floor(Math.random()*1000000));
+  getImage();
 }
 
 function httpGet(theUrl)
