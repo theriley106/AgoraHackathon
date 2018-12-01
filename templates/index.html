@@ -317,6 +317,15 @@ function getImage(){
     if (obVal.time > window.latest){
       window.latest = obVal.time;
       console.log("Changed image due to time")
+        var pos = 5,
+        neg = 5,
+        includeZero = true,
+        result;
+
+    do result = Math.ceil(Math.random() * (pos + neg)) - neg;
+    while (includeZero === false && result === 0);
+      document.getElementById("cardVal").setAttribute("style", "transform: rotate(" + result + "deg);");
+
       document.getElementById("cardVal").src=obVal.file;
     }
 }
