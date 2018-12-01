@@ -330,8 +330,26 @@ function getImage(){
     }
 }
 
+
+
+
 setInterval(function() {getImage();}, 200);
 
+window.onkeydown = function(event){
+    if(event.keyCode === 32) {
+        event.preventDefault();
+        newCard(); //This will trigger a click on the first <a> element.
+    }
+
+    if(event.keyCode === 75) {
+        event.preventDefault();
+        alert("You called spades"); //This will trigger a click on the first <a> element.
+    }
+    if(event.keyCode === 88) {
+        event.preventDefault();
+        resetCards(); //This will trigger a click on the first <a> element.
+    }
+};
 //audioSelect.onchange = getDevices;
 //videoSelect.onchange = getDevices;
 getDevices();
