@@ -26,6 +26,7 @@ def getCard():
 
 @app.route('/reset', methods=["GET"])
 def resetCards():
+	print("CARDS HAVE BEEN RESET")
 	while len(ACTIVE_CARDS) > 0:
 		ACTIVE_CARDS.pop()
 	while len(DEALT_CARDS) > 0:

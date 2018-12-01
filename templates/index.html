@@ -90,7 +90,7 @@ height: 500px;
         </div>
         <br>
          <div align="center">
-        <button type="button" class="btn btn-danger btn-lg btn-block">Reset Game</button>
+        <button type="button" onclick="resetCards()" class="btn btn-danger btn-lg btn-block">Reset Game</button>
         </div>
     </div>
     </div>
@@ -290,6 +290,21 @@ function getStats(){
 
 function newCard(){
   document.getElementById("cardVal").src="/card?cache=" + Math.floor(Math.random()*10000);
+}
+
+function httpGet(theUrl)
+// The network request grabs the json containing mp3 structure
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+
+function resetCards(){
+  httpGet("/reset");
+  newCard();
 }
 
 //audioSelect.onchange = getDevices;
