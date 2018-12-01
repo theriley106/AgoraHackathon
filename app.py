@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect, Markup, js
 import os
 import random
 import glob
+import time
 
 app = Flask(__name__, static_url_path='/static')
 CARDS = glob.glob("static/cards/*")
@@ -25,7 +26,7 @@ def getMostRecent():
 	if len(MOST_RECENT) == 0:
 		getCard()
 	file = MOST_RECENT[-1]
-	return file
+	return jsonify(file)
 
 @app.route('/newCard', methods=["GET"])
 def getCard():
@@ -33,7 +34,10 @@ def getCard():
 	a = random.choice(ACTIVE_CARDS)
 	ACTIVE_CARDS.remove(a)
 	filename = a
-	MOST_RECENT.append(filename)
+	info = {}
+	info['file'] = filename
+	info['time'] = int(time.time())
+	MOST_RECENT.append(info)
 	#LAST_SENT.append(filename)
 	return send_file(filename, mimetype='image/png')
 

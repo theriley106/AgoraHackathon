@@ -132,7 +132,7 @@ var client, localStream, camera, microphone;
 
 var audioSelect = document.querySelector('select#audioSource');
 var videoSelect = document.querySelector('select#videoSource');
-
+window.latest = 0;
 function join() {
   var channel_key = null;
 
@@ -311,8 +311,14 @@ function getImage(){
   var url = "/recent?cache=" + Math.floor(Math.random()*1000000);
     console.log(url);
     a = httpGet(url);
-    console.log(a);
-    document.getElementById("cardVal").src=a;
+
+    obVal = JSON.parse(a);
+    console.log(obVal);
+    if (obVal.time > window.latest){
+      window.latest = obVal.time;
+      console.log("Changed image due to time")
+      document.getElementById("cardVal").src=obVal.file;
+    }
 }
 
 setInterval(function() {getImage();}, 700);
