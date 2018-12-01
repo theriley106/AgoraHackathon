@@ -311,6 +311,7 @@ function getImage(){
   var url = "/recent?cache=" + Math.floor(Math.random()*1000000);
     console.log(url);
     a = httpGet(url);
+    console.log(a);
     document.getElementById("cardVal").src=a;
 }
 
