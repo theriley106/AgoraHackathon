@@ -310,7 +310,8 @@ function resetCards(){
 function getImage(){
   var url = "/recent?cache=" + Math.floor(Math.random()*1000000);
     console.log(url);
-    document.getElementById("cardVal").src=url;
+    a = httpGet(url);
+    document.getElementById("cardVal").src=a;
 }
 
 setInterval(function() {getImage();}, 700);

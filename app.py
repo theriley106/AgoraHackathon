@@ -25,7 +25,7 @@ def getMostRecent():
 	if len(MOST_RECENT) == 0:
 		getCard()
 	file = MOST_RECENT[-1]
-	return send_file(file, mimetype='image/png')
+	return file
 
 @app.route('/newCard', methods=["GET"])
 def getCard():
