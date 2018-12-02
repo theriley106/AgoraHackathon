@@ -127,6 +127,7 @@ AgoraRTC.Logger.error('this is error');
 AgoraRTC.Logger.warning('this is warning');
 AgoraRTC.Logger.info('this is info');
 AgoraRTC.Logger.debug('this is debug');
+window.elmt = [0];
 
 var client, localStream, camera, microphone;
 
@@ -234,8 +235,34 @@ function join() {
   });
 }
 
+function checkVolume(myVal){
+  console.log(myVal);
+  var sum = 0;
+  toNotify = false;
+  myVal = myVal[Object.keys(myVal)[0]].RecordingLevel;
+  if (parseInt(myVal) != parseInt(window.elmt[window.elmt.length-1])){
+    window.elmt.push(myVal);
+  }
+  if (window.elmt.length > 5){
+    for( var i = 0; i < 5; i++ ){
+        sum += parseInt( window.elmt[window.elmt.length-i-1], 10 ); //don't forget to add the base
+    }
+
+    var avg = sum/5;
+    console.log("sum", sum, "avg", avg, " currentval", myVal);
+    if ((myVal / 2) > avg){
+      toNotify = true;
+    }
+  }
+  console.log(window.elmt);
+  if (toNotify){
+    alert("Too Loud");
+    window.elmt = [];
+  }
+}
+
 function getBatteryLevel(){
-  client.getLocalAudioStats((x)=>console.log("Ayyo", x));
+  client.getLocalAudioStats((x)=>checkVolume(x));
 }
 
 
@@ -333,8 +360,10 @@ function getImage(){
 
 
 
-
 setInterval(function() {getImage();}, 200);
+
+
+setInterval(function() {getBatteryLevel();}, 100);
 
 window.onkeydown = function(event){
     if(event.keyCode === 32) {

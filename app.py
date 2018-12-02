@@ -4,6 +4,12 @@ import random
 import glob
 import time
 
+
+try:
+	from keys import *
+except:
+	AGORA_KEY = os.environ.get('API_KEY', None)
+
 app = Flask(__name__, static_url_path='/static')
 CARDS = glob.glob("static/cards/*")
 ACTIVE_CARDS = CARDS
@@ -13,10 +19,6 @@ LAST_SENT = []
 
 @app.route('/', methods=['GET'])
 def index():
-	try:
-		from keys import *
-	except:
-		AGORA_KEY = os.environ.get('API_KEY', None)
 	return render_template("index.html", API_KEY=AGORA_KEY)
 
 @app.route('/recent', methods=["GET"])
