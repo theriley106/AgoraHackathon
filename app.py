@@ -10,6 +10,8 @@ try:
 except:
 	AGORA_KEY = os.environ.get('API_KEY', None)
 
+ORDER = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+
 app = Flask(__name__, static_url_path='/static')
 CARDS = glob.glob("static/cards/*")
 ACTIVE_CARDS = CARDS
@@ -64,6 +66,28 @@ def checkNew():
 	except Exception as exp:
 		print exp
 		return exp
+
+def correctAnswer(playerID=None):
+	while len(MOST_RECENT) > 0:
+		MOST_RECENT.pop()
+
+@app.route('/isWin', methods=["GET"])
+def checkWin():
+	if len(MOST_RECENT) < 2:
+		return "False"
+	else:
+		tempList = sorted(MOST_RECENT, key=lambda k: k['time'])
+		cardOne = tempList[-1]['file'].partition("/cards/")[2].partition(".png")[0][:-1]
+		cardTwo = tempList[-2]['file'].partition("/cards/")[2].partition(".png")[0][:-1]
+		cardOneIndex = ORDER.index(cardOne)
+		cardTwoIndex = ORDER.index(cardTwo)
+		if (cardTwoIndex == len(ORDER)-1) and (cardOneIndex == 0):
+			correctAnswer()
+			return "True"
+		if cardOneIndex - cardTwoIndex == 1 or cardOne == cardTwo:
+			correctAnswer()
+			return "True"
+	return "False"
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000)
