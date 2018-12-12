@@ -100,13 +100,13 @@ height: 500px;
 </div>
 
 <footer class="container-fluid">
-  <p>Footer Text</p>
+  <center><b><h3 id="score">Current Score: 0</h3></b></center>
 </footer>
 
 
 
 <script language="javascript">
-
+window.currentScore = 0;
 if(!AgoraRTC.checkSystemRequirements()) {
   alert("Your browser does not support WebRTC!");
 }
@@ -255,7 +255,9 @@ function checkVolume(myVal){
     a = httpGet("/isWin");
     console.log(a);
     if (a == "True"){
-      alert("You Scored!");
+      window.currentScore += 1;
+      document.getElementById("score").innerHTML = "Current Score: " + window.currentScore;
+      setTimeout(function(){alert("You Scored!")},1000);
     }
     window.elmt = [];
   }
@@ -380,6 +382,7 @@ window.onkeydown = function(event){
         resetCards(); //This will trigger a click on the first <a> element.
     }
 };
+document.getElementById("score").innerHTML = "Current Score: " + window.currentScore;
 //audioSelect.onchange = getDevices;
 //videoSelect.onchange = getDevices;
 getDevices();
