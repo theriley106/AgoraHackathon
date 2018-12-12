@@ -40,12 +40,15 @@ def getCard():
 	info['file'] = filename
 	info['time'] = int(time.time())
 	MOST_RECENT.append(info)
+	print MOST_RECENT
 	#LAST_SENT.append(filename)
 	return send_file(filename, mimetype='image/png')
 
 @app.route('/reset', methods=["GET"])
 def resetCards():
 	print("CARDS HAVE BEEN RESET")
+	while len(MOST_RECENT) > 0:
+		MOST_RECENT.pop()
 	while len(ACTIVE_CARDS) > 0:
 		ACTIVE_CARDS.pop()
 	while len(DEALT_CARDS) > 0:
