@@ -29,4 +29,8 @@ To ensure that a player's laptop computer does not die while the game is in prog
   <img src="images/batteryLow.png"/>
 </p>
 
+<p align="center">
+  <img src="images/photo3.png"/>
+</p>
+<p align="center"><b>Play with friends</b></p>
 
