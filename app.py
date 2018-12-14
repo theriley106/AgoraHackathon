@@ -74,7 +74,7 @@ def correctAnswer(playerID=None):
 @app.route('/isWin', methods=["GET"])
 def checkWin():
 	if len(MOST_RECENT) < 2:
-		return "False"
+		return "False " + str(MOST_RECENT)
 	else:
 		tempList = sorted(MOST_RECENT, key=lambda k: k['time'])
 		cardOne = tempList[-1]['file'].partition("/cards/")[2].partition(".png")[0][:-1]
@@ -87,7 +87,7 @@ def checkWin():
 		if cardOneIndex - cardTwoIndex == 1 or cardOne == cardTwo:
 			correctAnswer()
 			return "True"
-	return "False"
+	return "False" + str(MOST_RECENT)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000)
