@@ -260,7 +260,8 @@ function checkVolume(myVal){
   }
   console.log(window.elmt);
   if (toNotify){
-    a = httpGet("/isWin");
+    url = "/isWin?cache=" + Math.floor(Math.random()*1000000);
+    a = httpGet(url);
     console.log(a);
     if (a == "True"){
       window.currentScore += 1;
