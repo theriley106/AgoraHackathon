@@ -23,12 +23,16 @@ To ensure that a player's laptop computer does not die while the game is in prog
 
 <p align="center">
   <img src="images/ss1.png"/>
+  <br><b>Main Page</b>
 </p>
 
 <p align="center">
   <img src="images/batteryLow.png"/>
+  <br><b>Battery indicator to player disruptions</b>
 </p>
 
 <p align="center">
-  <img src="images/photo3.png"/><b>Play with friends</b></p>
+  <img src="images/photo3.png"/>
+  <br><b>Play with friends</b>
+</p>
 
