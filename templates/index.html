@@ -380,7 +380,15 @@ window.onkeydown = function(event){
 
     if(event.keyCode === 75) {
         event.preventDefault();
-        alert("You called spades"); //This will trigger a click on the first <a> element.
+        url = "/isWin?cache=" + Math.floor(Math.random()*1000000);
+    a = httpGet(url);
+    console.log(a);
+    if (a == "True"){
+      window.currentScore += 1;
+      document.getElementById("score").innerHTML = "Current Score: " + window.currentScore;
+      setTimeout(function(){alert("You Scored!")},1000);
+    }
+    window.elmt = []; //This will trigger a click on the first <a> element.
     }
     if(event.keyCode === 88) {
         event.preventDefault();
