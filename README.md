@@ -30,7 +30,5 @@ To ensure that a player's laptop computer does not die while the game is in prog
 </p>
 
 <p align="center">
-  <img src="images/photo3.png"/>
-</p>
-<p align="center"><b>Play with friends</b></p>
+  <img src="images/photo3.png"/><b>Play with friends</b></p>
 
