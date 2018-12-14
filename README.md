@@ -17,14 +17,16 @@ The objective of the game is to audibly call out whenever a key pair is dealt on
 
 Using the agora.io SDK, I quantify large disrecapancies in audio volume to detect when a player has yelled "Slap" or called out a key pair.  Additionally, a group video call is made with each player on the site and any new players will be added to the existing video call.
 
-To ensure that a player's laptop computer does not die while the game is in progress, I use the Agora SDK to get current battery percentage and kick off players below a certain battery threshold between turns.
-
-
+To ensure that a player's laptop computer does not die while the game is in progress, I use the Agora SDK to get current battery percentage and alert players to leave the game between turns if they are below a certain battery threshold.
 
 ## UI
 
 <p align="center">
   <img src="images/ss1.png"/>
+</p>
+
+<p align="center">
+  <img src="images/batteryLow.png"/>
 </p>
 
 

@@ -231,6 +231,14 @@ function join() {
   });
 }
 
+function checkBattery(myVal){
+  console.log(myVal.BatteryLevel);
+  if (myVal.BatteryLevel < 10){
+    console.log("BATTERY: ", myVal.BatteryLevel);
+    alert("Battery too low!");
+  }
+}
+
 function checkVolume(myVal){
   console.log(myVal);
   var sum = 0;
@@ -264,12 +272,8 @@ function checkVolume(myVal){
 }
 
 function getBatteryLevel(){
-  client.getLocalAudioStats((x)=>checkVolume(x));
-}
-
-
-function leave() {
-  getBatteryLevel();
+  window.client.getLocalAudioStats((x)=>checkVolume(x));
+  window.client.getSystemStats((e)=>checkBattery(e));
 }
 
 function publish() {
