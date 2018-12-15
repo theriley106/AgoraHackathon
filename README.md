@@ -2,7 +2,7 @@
 
 <h1 align="center"><a href="https://agoradevpost.herokuapp.com/">Link to the Web App</a></h1>
 
-<h3 align="center"><a href="https://youtu.be/3gIOp4J3eRU">Link to the Youtube Video</a></h3>
+<h2 align="center"><a href="https://youtu.be/3gIOp4J3eRU">Link to the Youtube Video</a></h2>
 
 
 
